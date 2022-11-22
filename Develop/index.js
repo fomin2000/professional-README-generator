@@ -51,7 +51,8 @@ const questions = [
 ];
 
 // TODO: Create a function to write README file
-function writeToFile(response) {`
+function writeToFile(response) {
+    return `
 # ${response.name}
 
 ## Description
@@ -61,9 +62,12 @@ function writeToFile(response) {`
 ## Table Of Contents
 
 - [Description](#description)
+- [Installation](#installation)
 - [Usage](#usage)
-- [Credits](#credits)
 - [License](#license)
+- [Contribution](#contribution)
+- [Tests](#tests)
+- [Questions](#questions)
 
 ## Installation
 - ${response.installation}
@@ -74,7 +78,7 @@ function writeToFile(response) {`
 ## License
 - ${response.license}
 
-## Contribution Guidelines
+## Contribution
 - ${response.contribution}
 
 ## Tests
@@ -87,14 +91,14 @@ function writeToFile(response) {`
 
 // TODO: Create a function to initialize app
 function init() {
-    inquirer.prompt(questions).then((response) => 
+    inquirer.prompt(questions).then((response) => {
         fs.writeFile(`${response.name}.md`, writeToFile(response), (err) => {
             if(err) {
                 return console.log(err)
             }
             return console.log('Your README file has been created!')
         })
-    )
+    })
 }
 
 // Function call to initialize app
